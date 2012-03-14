@@ -5,14 +5,19 @@ Spree::HomeController.class_eval do
   def index
     @searcher = Spree::Config.searcher_class.new(params)
     @products = @searcher.retrieve_products
-    render :template => "spree/pages/home"      
+    if !@page.nil?
+      render :template => "spree/pages/home"
+    else
+      render :template =>"spree/home/index"
+    end
   end
   
   private
   
     def get_homepage
-      @page = Spree::Page.find_by_path("/")
-      redirect_to products_url if @page.nil?
+      @page = Spree::Page.visible.find_by_path("/")
+      #redirect_to products_url if @page.nil?
+
       @page
     end
     
