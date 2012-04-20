@@ -14,6 +14,9 @@ Otherwise, follow these steps to get up and running with SpreeEssentialCms:
 Add spree_essential_cms to your Gemfile:
 
 ```ruby
+# Spree 1.1.x
+gem 'spree_essential_cms', :git => 'git://github.com/citrus/spree_essential_cms.git', :branch => 'master'
+
 # Spree 1.0.x
 gem 'spree_essential_cms', '~> 0.3.0.rc1'
 
@@ -100,7 +103,7 @@ Use a content decorator when you want different contexts to have their own image
 
 # app/models/content_decorator.rb
 
-Content.class_eval do
+Spree::Content.class_eval do
 
   # override default image sizes
   def default_attachment_sizes
@@ -127,6 +130,12 @@ Content.class_eval do
 end
 ```
 
+### Custom Home Page
+
+This extension modifies the `Spree::HomeController.index` method and redirects to `/products`
+if no root page is defined in the spree CMS. In order to define a custom home page you'll need to use another view
+off of the `Spree::HomeController` class such as `splash`, add the root route
+(`root :to => 'spree/home#splash'`) to your `config/routes.rb`, and add a blank page with path "/" in the spree CMS.
 
 ------------------------------------------------------------------------------
 Demo
@@ -210,7 +219,6 @@ Change Log
 To Do
 ------------------------------------------------------------------------------
 
-* more tests... many many more.
 * optimizations
 * A 'create translation' button that clones the current page's contents into another language
 * add widgets that you can drop into any page
@@ -226,6 +234,7 @@ Contributors
 * Spencer Steffen ([@citrus](https://github.com/citrus))
 * Stéphane Bounmy ([@sbounmy](https://github.com/sbounmy))
 * Kyle West ([@kylewest](https://github.com/kylewest))
+* Derek Ethier ([@ethier](https://github.com/ethier))
 * [@kpitn](https://github.com/kpitn)
 
 
