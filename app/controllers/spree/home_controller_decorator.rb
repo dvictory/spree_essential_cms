@@ -1,6 +1,6 @@
 Spree::HomeController.class_eval do
   
-  before_filter :get_homepage
+  before_filter :get_homepage,:except=>[:index]
   
   def index
     @searcher = Spree::Config.searcher_class.new(params)
