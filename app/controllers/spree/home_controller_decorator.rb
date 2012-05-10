@@ -5,7 +5,11 @@ Spree::HomeController.class_eval do
   def index
     @searcher = Spree::Config.searcher_class.new(params)
     @products = @searcher.retrieve_products
-    render :template => "spree/pages/home"      
+    if !@page.nil?
+      render :template => "spree/pages/home"
+ 	  else
+ 	    render :template =>"spree/home/index"
+ 	  end
   end
   
   private
