@@ -5,7 +5,7 @@
 
 <% unless content.nil? %>
   
-  <div class="content<%= ' alt' if content_counter % 2 == 0 %>" id="<%= dom_id(content) %>">
+  <div class="content<%= ' alt' if content_counter % 2 == 0 %>" id="<%= spree_dom_id(content) %>">
     
     <% if content.has_image? %>
       <div class="content-left">
