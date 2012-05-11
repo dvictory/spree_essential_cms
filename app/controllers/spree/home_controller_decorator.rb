@@ -15,7 +15,7 @@ Spree::HomeController.class_eval do
   private
   
     def get_homepage
-      @page = Spree::Page.visible.find_by_path("/")
+      @page = Spree::Page.find_by_path("/")
       redirect_to products_url if @page.nil?
     end
     
