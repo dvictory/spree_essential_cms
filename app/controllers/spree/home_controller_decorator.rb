@@ -10,6 +10,8 @@ Spree::HomeController.class_eval do
     else
       render :template =>"spree/home/index"
     end
+  rescue ActionView::MissingTemplate => e
+    missing_template e
   end
   
   private
